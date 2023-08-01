@@ -1,1 +1,49 @@
+--Here's the SQL to create the grocery store database.
+--NOTE: The popularity_rating ranges from 0 (not a popular item) to 100 (extremely popular item).
+CREATE TABLE grocery_store (
+    item_no INTEGER PRIMARY KEY,
+    item_name TEXT,
+    store_section TEXT,
+    unit_price INTEGER,
+    popularity_rating INTEGER);
+  
+--Populate the database with rows.
+INSERT INTO grocery_store VALUES (1, "white bread", "bakery", 1.79, 95);
+INSERT INTO grocery_store VALUES (2, "rye bread", "bakery", 3.88, 37);
+INSERT INTO grocery_store VALUES (3, "donuts", "bakery", 4.99, 88);
+INSERT INTO grocery_store VALUES (4, "muffins", "bakery", 3.29, 68);
+INSERT INTO grocery_store VALUES (5, "pizza", "frozen", 9.99, 92);
+INSERT INTO grocery_store VALUES (6, "ice cream", "frozen", 5.99, 82);
+INSERT INTO grocery_store VALUES (7, "pancakes", "frozen", 4.29, 32);
+INSERT INTO grocery_store VALUES (8, "blueberries", "frozen", 2.99, 35);
+INSERT INTO grocery_store VALUES (9, "ice", "frozen", 1.09, 16);
+INSERT INTO grocery_store VALUES (10, "lettuce", "produce", 1.49, 77);
+INSERT INTO grocery_store VALUES (11, "carrots", "produce", 2.88, 72);
+INSERT INTO grocery_store VALUES (12, "parsnips", "produce", 3.79, 9);
+INSERT INTO grocery_store VALUES (13, "potatoes", "produce", 5.29, 70);
+INSERT INTO grocery_store VALUES (14, "nuts", "bulk", 7.99, 54);
+INSERT INTO grocery_store VALUES (15, "oats", "bulk", 2.29,67);
+INSERT INTO grocery_store VALUES (16, "flour", "bulk", 0.99, 93);
+INSERT INTO grocery_store VALUES (17, "shampoo", "pharmacy", 12.98, 52);
+INSERT INTO grocery_store VALUES (18, "toothbrush", "pharmacy", 6.29, 61);
+INSERT INTO grocery_store VALUES (19, "milk", "dairy", 4.79, 94);
+INSERT INTO grocery_store VALUES (20, "cheese", "dairy", 5.59,74);
+INSERT INTO grocery_store VALUES (21, "yogurt", "dairy", 4.48, 60);
+INSERT INTO grocery_store VALUES (22, "sour cream", "dairy", 2.56, 44);
+INSERT INTO grocery_store VALUES (23, "kefir", "dairy", 3.48, 28);
+INSERT INTO grocery_store VALUES (24, "buttermilk", "dairy", 3.99, 36);
 
+--Display the contents of the database when ordered by the unit price from the most expensive item to the least expensive item. 
+SELECT * FROM grocery_store
+ORDER BY unit_price DESC; 
+
+--What is the average price of the products in the dairy section?
+SELECT AVG(unit_price) "Average Price of Dairy Products"
+FROM grocery_store
+WHERE store_section='dairy'; 
+
+--What are the top 3 most popular items that the store sells? 
+SELECT item_no, item_name, store_section, unit_price, popularity_rating
+FROM grocery_store
+ORDER BY popularity_rating DESC
+LIMIT 3; 
